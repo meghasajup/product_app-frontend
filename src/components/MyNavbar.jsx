@@ -3,11 +3,16 @@ import Box from '@mui/material/Box';
 import './MyNavbar.css';
 import { Stack, Typography } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom'
+import useAuthStore from '../store/authStore';
+import { toast } from 'react-toastify';
 
 export default function MyNavbar() {
 
     const navigate = useNavigate();
-    const toLogin = () => {
+    const { logoutAuth } = useAuthStore();
+    const logOut = () => {
+        logoutAuth();
+        toast.info("Logout successful");
         navigate('/login')
     }
 
@@ -24,7 +29,7 @@ export default function MyNavbar() {
                         <Typography variant="h6" sx={{ color: 'white', cursor: 'pointer' }}>Add Product</Typography>
                     </Link>
 
-                    <Typography variant="h6" sx={{ color: 'white', cursor: 'pointer' }} onClick={toLogin}>Logout</Typography>
+                    <Typography variant="h6" sx={{ color: 'white', cursor: 'pointer' }} onClick={logOut}>Logout</Typography>
                 </Stack>
             </Box>
         </>

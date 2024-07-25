@@ -19,7 +19,7 @@ const router = createBrowserRouter([
         element: <FormPage />
     },
     {
-        path: "/edit-form",
+        path: "/edit-form/:id",
         element: <FormPage />
     },
     {

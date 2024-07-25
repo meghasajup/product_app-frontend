@@ -3,6 +3,8 @@ import { Avatar, Button, Container, Table, TableBody, TableCell, TableContainer,
 import { deleteProduct, getAllProduct } from '../apis/Index';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 export default function MyTable() {
 
@@ -31,7 +33,7 @@ export default function MyTable() {
 
 
     const handleEdit = async (id) => {
-        navigate('/edit-form')
+        navigate(`/edit-form/${id}`)
     }
 
     return (
@@ -61,8 +63,8 @@ export default function MyTable() {
                                     <TableCell>{row.category}</TableCell>
                                     <TableCell>{row.quantity}</TableCell>
                                     <TableCell>{row.price}</TableCell>
-                                    <TableCell><Button onClick={() => { handleEdit(row._id) }}>Edit</Button></TableCell>
-                                    <TableCell><Button onClick={() => { handleDelete(row._id) }}>Delete</Button></TableCell>
+                                    <TableCell><Button onClick={() => { handleEdit(row._id) }}><ModeEditOutlineIcon /></Button></TableCell>
+                                    <TableCell><Button onClick={() => { handleDelete(row._id) }}><DeleteIcon /></Button></TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>
