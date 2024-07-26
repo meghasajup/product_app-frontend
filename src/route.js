@@ -1,9 +1,13 @@
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import FormPage from './pages/FormPage';
-import {
-    createBrowserRouter,
-} from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
+import useAuthStore from './store/authStore';
+
+const PrivateRoute = ({children}) => {
+    const { isAuth } = useAuthStore();
+    return isAuth ? children : <Navigate to="/login" />
+  };
 
 const router = createBrowserRouter([
     {
@@ -12,15 +16,15 @@ const router = createBrowserRouter([
     },
     {
         path: "/",
-        element: <HomePage />
+        element: <PrivateRoute><HomePage /></PrivateRoute>
     },
     {
         path: "/add-form",
-        element: <FormPage />
+        element: <PrivateRoute><FormPage /></PrivateRoute>
     },
     {
         path: "/edit-form/:id",
-        element: <FormPage />
+        element: <PrivateRoute><FormPage /></PrivateRoute>
     },
     {
         path: "*",

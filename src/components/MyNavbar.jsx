@@ -3,8 +3,8 @@ import Box from '@mui/material/Box';
 import './MyNavbar.css';
 import { Stack, Typography } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom'
-import useAuthStore from '../store/authStore';
 import { toast } from 'react-toastify';
+import useAuthStore from '../store/authStore';
 
 export default function MyNavbar() {
 

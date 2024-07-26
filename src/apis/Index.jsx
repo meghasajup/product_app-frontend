@@ -2,6 +2,8 @@ import axios from "axios";
 
 const BASE_URL = 'http://localhost:4528';
 
+const token = `Dear ${localStorage.getItem('product-token')};`
+
 
 export const login = async (data) => {
     try {
@@ -14,7 +16,9 @@ export const login = async (data) => {
 
 export const addProduct = async (data) => {
     try {
-        const response = await axios.post(` ${BASE_URL}/products`, data,
+        const response = await axios.post(` ${BASE_URL}/products`, data,{
+            headers: { Authorization: token }
+        }
             // { headers: { "Content-Type": "multipart/form-data" }}
         )
         return response.data
@@ -57,7 +61,7 @@ export const deleteProduct = async (id) => {
 
 export const updateProduct = async (id, data) => {
     try {
-        const response = await axios.put(`${BASE_URL}/products/${id}`, data);
+        const response = await axios.put(`${BASE_URL}/products/${id}`, data );
         return response.data;
     } catch (error) {
         throw error;
